@@ -1,0 +1,21 @@
+@import './variables.scss';
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  background-color: $color-black-russian;
+  color: $color-white;
+}
+
+button {
+  border-radius: '10px';
+  cursor: pointer;
+  background-color: $color-medium-persian-blue;
+  color: $color-white;
+
+  &:hover {
+    background-color: $color-blue;
+  }
+}
