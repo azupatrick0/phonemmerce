@@ -1,5 +1,382 @@
 @import '../variables.scss';
 
 .home {
-  margin: 0 20px;
+	margin: 40px 20px 0 40px;
+}
+
+.home__header {
+	display: flex;
+	justify-content: space-between;
+}
+
+.home__header-description {
+	div:first-child {
+		font-size: 30px;
+		text-transform: uppercase;
+		line-height: 40px;
+		font-weight: 400;
+	}
+}
+
+.home__header-image {
+  margin-right: 35px;
+  img {
+    height: 200px;
+    width: 400px;
+  }
+}
+
+.search {
+	display: flex;
+
+	input {
+		width: 300px;
+		height: 40px;
+		margin-top: 20px;
+		padding: 0 4px;
+		outline: 0;
+		border-radius: 5px;
+		border: 0;
+	}
+
+	button {
+		margin-top: 20px;
+		margin-left: 10px;
+	}
+}
+
+.home__body {
+	display: flex;
+	margin-top: 25px;
+}
+
+.home__sidebar {
+	width: 14vw;
+	background-color: $color-bunker;
+	font-size: 11px;
+	padding: 20px 0 10px 2%;
+	color: $color-lighter-gray;
+	height: 520px;
+}
+
+.sidebar__categories,
+.sidebar__price-filter,
+.sidebar__storage-sizes {
+	div:first-child {
+		font-size: 13px;
+	}
+
+	div {
+		margin-top: 5px;
+	}
+}
+
+.sidebar__price-filter {
+	margin: 20px 0;
+}
+
+.sidebar__price-filter span {
+	color: white;
+}
+
+.sidebar__price-filter input {
+	width: 80%;
+	height: 30px;
+	margin-top: 10px;
+	padding: 0 8px;
+	outline: 0;
+	border-radius: 3px;
+	border: 0;
+}
+
+.slider__min-max {
+	display: flex;
+	justify-content: space-between;
+	margin-top: 10px;
+
+	div:first-child,
+	div:last-child {
+		font-size: 10px;
+	}
+}
+
+.home__cards {
+	display: grid;
+	grid-template-columns: auto auto auto auto auto;
+	row-gap: 5%;
+	width: 80vw;
+	margin-left: 3vw;
+	color: $color-lighter-gray;
+}
+
+.card {
+	background-color: $color-black-russian-card;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	width: 180px;
+	height: 280px;
+	border-radius: 3px;
+	padding: 4px 4px 18px 4px;
+	box-shadow: 1px 2px 8px $color-black-russian-shadow;
+}
+
+.card__grade {
+	border: 1px solid $color-slate-grey;
+	width: 35px;
+	text-align: center;
+	font-size: 11px;
+	margin-left: 70%;
+	margin-top: 10px;
+	color: $color-lighter-gray;
+}
+
+.card__description {
+	font-size: 13px;
+	color: $color-lighter-gray;
+
+	div:nth-child(2),
+	div:nth-child(3),
+	div:nth-child(5) {
+		font-size: 10px;
+		color: $color-slate-grey;
+	}
+}
+
+.pagination {
+	list-style-type: none;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	margin: 17% 0 0 7%;
+}
+
+.pagination li {
+	margin-left: 20px;
+}
+
+.pagination li a {
+	cursor: pointer;
+	padding: 1vh 2vw;
+	text-align: center;
+	border-radius: 2px;
+	background-color: $color-black-russian-card;
+}
+
+.pagination .active a {
+	background-color: $color-palatinate-purple;
+	color: $color-white;
+	font-weight: bold;
+}
+
+.loader {
+	display: grid;
+	justify-content: center;
+	align-items: center;
+	height: 40vh;
+	margin-left: 25vw;
+}
+
+.load__iphones {
+	cursor: pointer;
+	border: 1.5px solid $color-slate-blue;
+	background-color: $color-free-speech-blue;
+	border-radius: 100%;
+	display: flex;
+	align-items: center;
+	flex-direction: column;
+	justify-content: center;
+	position: fixed;
+	bottom: 10px;
+	right: 14px;
+	height: 80px;
+	width: 90px;
+	animation: pulse 2s infinite;
+
+	@keyframes pulse {
+		0% {
+			transform: scale(0.95);
+			box-shadow: 0 0 0 0 $color-free-speech-blue;
+		}
+
+		70% {
+			transform: scale(1);
+			box-shadow: 0 0 0 20px $color-bunker;
+		}
+
+		100% {
+			transform: scale(0.95);
+			box-shadow: 0 0 0 0 $color-palatinate-purple;
+		}
+	}
+
+	&:hover {
+		transform: scale(1.04);
+	}
+
+	div:nth-child(1),
+	div:nth-child(2) {
+		color: $color-white;
+		font-weight: bold;
+		font-size: 12px;
+		margin: 0 auto;
+	}
+}
+
+@media (max-width: 1024px) {
+  .home__header-image {
+    margin-right: 35px;
+    img {
+      width: 200px;
+      height: 120px;
+    }
+  }
+
+	.home__body {
+    display: block;
+	}
+
+	.home__sidebar {
+		width: 85vw;
+		height: 200px;
+		padding-top: 0;
+	}
+
+	.sidebar {
+		display: grid;
+		grid-template-columns: auto auto auto;
+    align-items: center;
+    width: 97vw;
+	}
+
+	.sidebar__price-filter input {
+		width: 40%;
+	}
+
+	.sidebar__price-filter span[class="MuiSlider-root MuiSlider-colorPrimary"] {
+		width: 50%;
+	}
+
+	.sidebar__categories,
+	.sidebar__price-filter,
+	.sidebar__storage-sizes {
+		div {
+			margin-top: 0;
+		}
+	}
+
+	.sidebar__price-filter {
+		margin: 15px 0;
+	}
+
+	.slider__min-max {
+		width: 17vw;
+	}
+
+	.home__cards {
+    grid-template-columns: auto auto auto;
+    width: 100%;
+    row-gap: 1vh;
+		margin-left: 0;
+		margin-top: 20px;
+  }
+  
+  .pagination {
+    margin: 60px 0 0 0;
+  }
+}
+
+@media (min-width: 426px) and (max-width: 767px) {
+  .home__header {
+    display: block;
+  }
+
+  .home__header-image {
+    img {
+      margin-top: 10px;
+    }
+  }
+
+	.home__body {
+    display: block;
+	}
+
+	.home__sidebar {
+		width: 85vw;
+		height: 180px;
+	}
+
+	.sidebar {
+    display: grid;
+		grid-template-columns: 33% 33% 33%;
+	}
+
+	.sidebar__price-filter input {
+		width: 60%;
+	}
+
+	.sidebar__price-filter span[class="MuiSlider-root MuiSlider-colorPrimary"] {
+		width: 75%;
+	}
+
+	.slider__min-max {
+		width: 19vw;
+	}
+
+	.home__cards {
+    grid-template-columns: auto auto;
+    column-gap: 5px;
+  }
+  
+  .pagination {
+    display: grid;
+    grid-template-columns: auto auto auto auto auto auto;
+    row-gap: 50px;
+    margin: 60px 0 0 0;
+  }
+}
+
+@media (min-width: 1px) and (max-width: 425px) {
+  .home {
+    margin-left: 18px;
+  }
+
+  .home__header {
+    display: block;
+  }
+
+	.home__sidebar {
+		width: 85vw;
+		height: 200px;
+	}
+
+	.sidebar {
+    display: grid;
+		grid-template-columns: 33% 33% 33%;
+	}
+
+	.sidebar__price-filter input {
+		width: 60%;
+	}
+
+	.sidebar__price-filter span[class="MuiSlider-root MuiSlider-colorPrimary"] {
+		width: 75%;
+	}
+
+	.slider__min-max {
+		width: 19vw;
+	}
+
+	.home__cards {
+    grid-template-columns: auto;
+    margin-left: 15vw;
+  }
+  
+  .pagination {
+    display: grid;
+    grid-template-columns: auto auto auto auto auto;
+    row-gap: 20px;
+    margin: 40px 0 0 0;
+  }
 }

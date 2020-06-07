@@ -1,32 +1,29 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Slider from '@material-ui/core/Slider';
+import { func } from 'prop-types';
 
 const useStyles = makeStyles({
   root: {
-    width: 200,
+    width: '80%',
   },
 });
 
-const PriceSlider = () => {
+const PriceSlider = ({ setMin, setMax }) => {
   const classes = useStyles();
-  const [value, setValue] = React.useState([20, 60]);
-  const [min, setMin] = React.useState(0);
-  const [max, setMax] = React.useState(0);
+  const [value, setValue] = useState([20, 60]);
 
   const handleChange = (event, newValue) => {
-    setMin(newValue[0] * 10);
-    setMax(newValue[1] * 10);
+    setMin(newValue[0] * 100);
+    setMax(newValue[1] * 100);
     setValue(newValue);
-
-    // use debounce to filter phones array and return phones with min max
   };
 
   return (
     <div className={classes.root}>
       <div className="slider__min-max">
-        <div>{value ? value[0] * 10 : min}</div>
-        <div>{value ? value[1] * 10 : max}</div>
+        <div>${value && value[0] * 100}</div>
+        <div>${value && value[1] * 100}</div>
       </div>
       <Slider
         value={value}
@@ -34,6 +31,11 @@ const PriceSlider = () => {
       />
     </div>
   );
+};
+
+PriceSlider.propTypes = {
+  setMax: func,
+  setMin: func,
 };
 
 export default PriceSlider;

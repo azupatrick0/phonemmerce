@@ -2,20 +2,27 @@
 
 * {
   box-sizing: border-box;
+  
 }
 
 body {
   background-color: $color-black-russian;
   color: $color-white;
+  font-family: $font-family-poppins;
+  margin-bottom: 70px;
 }
 
 button {
-  border-radius: '10px';
+  border-radius: 3px;
   cursor: pointer;
-  background-color: $color-medium-persian-blue;
+  background-color: $color-slate-blue;
   color: $color-white;
+  outline: 0;
+  border: 0;
+  font-weight: 400;
+  font-size: 12px;
 
   &:hover {
-    background-color: $color-blue;
+    background-color: $color-free-speech-blue;
   }
 }

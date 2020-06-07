@@ -1,23 +1,27 @@
 import React from 'react';
-import { string, node } from 'prop-types';
+import { number, node, func } from 'prop-types';
 
 const Button = ({
-  width, height, children,
+  width, height, children, onClick,
 }) => (
   <div>
-     <button style={{
-       width,
-       height,
-     }}>
+     <button
+      style={{
+        width,
+        height,
+      }}
+      onClick={onClick}
+     >
       {children}
     </button>
   </div>
 );
 
 Button.propTypes = {
-  width: string,
-  height: string,
+  width: number,
+  height: number,
   children: node,
+  onClick: func,
 };
 
 export default Button;
