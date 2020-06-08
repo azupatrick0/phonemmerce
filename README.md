@@ -11,3 +11,7 @@
  * Start the App
  
    * yarn start
+   
+ * Run test
+
+   * yarn test
