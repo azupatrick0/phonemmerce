@@ -23,7 +23,6 @@ const Home = () => {
   const [maxPrice, setMax] = useState('');
 
   const fetchPhones = async (limit, page, search, min, max) => {
-    setBuyRequest(!buyRequest);
     setLoading(true);
     try {
       const response = await axios.get(`${process.env.REACT_APP_API_URL}limit=${limit}&page=${page}&search=${search}&min=${min}&max=${max}&type=${buyRequest ? 'buyrequest' : ''}`);
@@ -31,7 +30,6 @@ const Home = () => {
       setLoading(false);
       setPhones(response.data.data.phones.data);
       setPageCount(response.data.data.phones.metadata.pages);
-      setSearchValue('');
     } catch (error) {
       Sentry.captureException(error);
     }
@@ -71,7 +69,13 @@ const Home = () => {
       behavior: 'smooth',
     });
 
-    fetchPhones(20, selected + 1, paginationSearchValue, minPrice, maxPrice);
+    if (minPrice && maxPrice) {
+      fetchPhones(20, selected + 1, '', minPrice, maxPrice);
+    } else if (paginationSearchValue) {
+      fetchPhones(20, selected + 1, paginationSearchValue, '', '');
+    } else {
+      fetchPhones(20, selected + 1, 'i', '', '');
+    }
   };
 
   useEffect(() => {
@@ -79,6 +83,10 @@ const Home = () => {
       debounce(fetchPhones(20, 1, '', minPrice, maxPrice), 1000);
     }
   }, [minPrice, maxPrice]);
+
+  useEffect(() => {
+    fetchPhones(20, 1, 'i', '', '');
+  }, [buyRequest]);
 
   return (
     <div className="home">
@@ -142,11 +150,11 @@ const Home = () => {
       </div>
 
       <div className="load__iphones" onMouseLeave={() => setLoadRequest(false)} onMouseEnter={() => setLoadRequest(true)} onClick = {() => {
-        fetchPhones(20, 1, 'i', '', '');
+        setBuyRequest(!buyRequest);
       }
       }>
         <div>Load</div>
-        <div>{ loadRequest && buyRequest ? 'Buy Request' : loadRequest && !buyRequest ? 'Sell Request' : 'IPhones' }</div>
+        <div>{ loadRequest && buyRequest ? 'Sell Request' : loadRequest && !buyRequest ? 'Buy Request' : 'IPhones' }</div>
       </div>
     </div>
   );
